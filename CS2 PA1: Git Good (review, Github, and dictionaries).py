@@ -42,7 +42,7 @@ user_schedule = {
 }
 
 def which_schedule():
-    result = input("Mod or D Block?\n> ")
+    result = input("Add a schedule: Mod or D Block?\n> ")
     if not result.strip(" ") in ["mod", "dblock", "d", "m"]:
         print("Error! Please type correct name")
         return False
@@ -66,13 +66,25 @@ def dblock_name(): #dblock
     name = input ("what is the name of your d block? \n>")
     user_schedule["dblock"].update({name})
 
-def dblock_szn():
+def dblock_szn(): 
     szn = input ("what is the season of your dblock\n>" )
     while szn not in user_schedule["dblock"].keys():
         print("error: pick between fall winter and spring")
         szn = input ("what is the season of your dblock\n>")
         answered = "dblock" + szn 
     return True
+
+def add_class():
+    block = input("what class do you want to add? a, b, or c ")
+    if block not in ["a", "b", "c"]:
+        print("error: please say a, b or c")
+        return
+
+    # now check the modules
+    for mod in ["mod 1", "mod 2", "mod 3", "mod 4", "mod 5", "mod 6", "mod 7"]:
+        if f"{block} block" in user_schedule[mod].keys():
+            input("What is the name of your class")
+            return
     
 def main():
     print("Welcome")
@@ -87,6 +99,7 @@ def main():
             return 
        else:
             print("great lets add a class\n")
+            add_class()
             
     elif option == "dblock":
         if not dblock_szn():
@@ -94,7 +107,7 @@ def main():
             return
         elif not dblock_name():
             print("d block added")
-    #print("great lets add a class\n")
+    
     # ask for a class
     # ask which block
     # put it in
