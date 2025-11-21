@@ -63,7 +63,7 @@ def clean_input(text):
 #a which_schedule creates the mod or d block you are putting input into
 def which_schedule():
     result = input("Add a schedule: Mod or D Block?\n> ")
-    while not clean_input(result) in ["mod", "dblock", "d", "m"]:
+    while not clean_input(result) in ["mod", "d block", "d", "m"]:
         print("Error! Please type correct name")
         result = input("Add a schedule: Mod or D Block?\n> ")
     
@@ -81,7 +81,14 @@ def verify_name(): #mod
         print("error: between 1 and 7")
         answer =  input("what mod are you scheduling, enter a number between 1 and 7? \n> ")
         mod_name = "mod " + answer 
+    if any(value != "" for value in user_schedule[mod_name].values()):
+            print("Error: This mod already has classes. Pick another mod.")
     return mod_name
+
+
+
+        
+
 
 
 # dblock_name and dblock_szn asks for the name of your dblock and season and puts it in the dictionary
@@ -105,7 +112,6 @@ def add_class(mod):
         block = input("what class do you want to add? a block, b block, or c block \n>")
         if block not in ["a block", "b block", "c block"]:
             print("error: please say a block, b block or c block \n>")
-            #block = input("what class do you want to add? a, b, or c \n>")
             continue
         class_name = input("What is the name of your class \n>")
         if user_schedule[mod][block] == "":          
@@ -128,21 +134,21 @@ def add_class(mod):
 
 
 def is_schedule_empty(schedule):
-    # for every key in my schdule dictionary
-    # how to iterate a disctionaey
     for key, value in schedule.items():
         for mod_name, classes in value.items():
             if classes != "":
                 return False
     return True
 
+
 def view_schedule(schedule):
     for key, value in schedule.items():
         for mod_name, classes in value.items():
             if classes != "":  
-                print(key + " " + term_dates[key])              
+                print(key + " " + term_dates[key]) 
+                print(" ")             
                 print(mod_name + " " + classes)
-                # print(term_dates[mod_name])                
+                     
     
 def main():
     
@@ -151,40 +157,34 @@ def main():
     print("Welcome")
     question = "schedule"
     while running:
-        
-        # is this the first time i am running? has anything been added to schedule
         if not is_schedule_empty(user_schedule):
             question = input("Would you like to 1. create a schedule 2. view schedule 3. leave program")
 
         if question in ["3"]:
             running = False
 
-        # if schedule is empty, go straight to schedule loop
         if question in ["view", "v", "2"]:
             view_schedule(user_schedule)
 
         if question in ["1", "schedule"]:            
-            ##### schedule loop
             option = which_schedule()        
             while add_more:
-                if option == "mod": 
+                if option == "mod":
                     mod_added = verify_name()
                     print("great lets add a class\n")
                     add_class(mod_added)
-                    print("class added")
-                        
+                                    
                 elif option == "dblock":
                     dblock_name()
                     print("d block added")
 
                 new_class = input("would you like to add another schedule?\n>")
-                if new_class == "no": #if the user doesnt wan't to add another class it brings them to the main page where they can view there schedule
+                if new_class == "no":
                     add_more = False
+                else:
+                     option = which_schedule()
                     
-
-    
            
 main()
 
-#make main page
-#make the new_class be specific to mod and d block
+#loop around new sched
