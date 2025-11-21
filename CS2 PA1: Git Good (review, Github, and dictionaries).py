@@ -55,47 +55,6 @@ term_dates = {
 
 }
 
-assignments = {
-    "mod 1": {
-        "a block": "",
-        "b block": "",
-        "c block": ""
-    },
-    "mod 2": {
-        "a block": "",
-        "b block": "",
-        "c block": ""
-    },
-    "mod 3" : {
-        "a block" : "",
-        "b block" : "",
-        "c block" : "",
-          },
-    "mod 4" : {
-        "a block" : "",
-        "b block" : "",
-        "c block" : "",
-          },
-    "mod 5" : {
-        "a block" : "",
-        "b block" : "",
-        "c block" : "",
-          },
-    "mod 6" : {
-        "a block" : "",
-        "b block" : "",
-        "c block" : "",
-          },
-    "mod 7" : {
-        "a block" : "",
-        "b block" : "",
-        "c block" : "",
-          },
-
-}
-
-
-
 
 #clean_input is a reuseable function that removes white whites space from user input
 def clean_input(text):
